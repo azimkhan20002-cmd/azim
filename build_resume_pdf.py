@@ -95,12 +95,12 @@ story.append(Paragraph(
 story.append(hr_section("Summary", space_before=4))
 story.append(Spacer(1, 1))
 story.append(Paragraph(
-    "Analytical, metrics-driven finance professional with experience across portfolio finance, capital planning, "
-    "FP&amp;A, and consulting. Skilled in financial modeling, valuation (DCF, comparables), forecasting, and "
-    "quantitative analysis. Strong record managing budgeting, variance "
-    "analysis, and capital-allocation governance across a $71M, 60+ project portfolio, preparing committee-level "
-    "materials, and delivering scenario and sensitivity analysis that supports senior-leadership investment and "
-    "resource decisions. Direct exposure to the fintech and consumer-payments sector.",
+    "Finance professional pairing portfolio finance and capital planning with hands-on valuation and quantitative "
+    "modeling. Build DCF, comparables, and scenario/sensitivity models in Excel and Python, run variance and "
+    "regression-based analysis, and translate multi-source data into committee-ready materials that drive "
+    "capital-allocation decisions. Currently steward forecasting and governance for a $71M, 60+ project portfolio, "
+    "preparing monthly steering-committee materials for executive funding decisions. Seeking to apply this "
+    "analytical rigor to investment due diligence, sourcing, and execution across fintech and emerging-technology sectors.",
     body))
 
 # EXPERIENCE
@@ -109,10 +109,10 @@ for flow in job(
     "NextEra Energy (NEER)", "Dec 2025 - Present",
     "Financial Analyst, Portfolio Finance &amp; Capital Planning", "Juno Beach, FL",
     [
-        "Manage budgeting, forecasting, and variance analysis across a $71M portfolio of 60+ enterprise projects, delivering monthly steering-committee materials that inform executive capital-allocation decisions.",
-        "Performed portfolio audits reconciling WBS charge codes and budget line items against live dashboards, identifying $1.2M in misallocated charges and strengthening data integrity.",
-        "Built manager-level budget and forecasting workbooks in Excel with automated actuals mapping from SAP BusinessObjects, reducing manual data entry by 40% and accelerating month-close reporting cycles.",
-        "Designed dashboard templates with RAG status indicators and YTD pace variance, synthesizing portfolio data into real-time decision materials for senior leadership.",
+        "Own forecasting, budgeting, and variance analysis for a $71M, 60+ project portfolio, preparing monthly steering-committee materials that directly inform executive capital-allocation and funding decisions.",
+        "Surfaced $1.2M in misallocated charges through a portfolio audit reconciling WBS charge codes against live actuals, tightening data integrity ahead of senior-leadership review.",
+        "Built driver-based budget and forecasting models in Excel with automated SAP actuals integration, cutting manual data entry 40% and compressing the month-close cycle.",
+        "Stood up portfolio-health dashboards (RAG status, YTD pace-to-plan variance) that synthesize multi-source data into real-time decision views for senior leadership.",
     ]):
     story.append(flow)
 
@@ -121,9 +121,9 @@ for flow in job(
     "Populus Financial Group", "Feb 2025 - Aug 2025",
     "Financial Analyst (FP&amp;A)", "Irving, TX",
     [
-        "Built forecasting and projection models in Excel and Python with scenario and sensitivity analysis, supporting ~$1.35M in monthly revenue across money-transfer, money-order, and bill-pay (consumer-fintech) product lines.",
-        "Analyzed transaction cycles and revenue streams using variance and trend models to identify revenue-leakage patterns informing executive decisions.",
-        "Evaluated data-center consolidation alternatives through cost-benefit and valuation analysis, identifying ~$500K in annualized savings, and automated recurring reporting across SQL, Excel, and Power BI.",
+        "Built forecasting and scenario/sensitivity models in Excel and Python across ~$1.35M in monthly revenue for a consumer-fintech lender's money-transfer, money-order, and bill-pay lines.",
+        "Diagnosed revenue-leakage drivers through variance and trend analysis of transaction cycles, converting findings into pricing and operational actions for executive leadership.",
+        "Developed an NPV / cost-benefit model evaluating data-center consolidation alternatives, quantifying ~$500K in annualized savings to support the capital decision.",
     ]):
     story.append(flow)
 
@@ -132,9 +132,9 @@ for flow in job(
     "Ernst &amp; Young", "Aug 2024 - Jan 2025",
     "Technology Consultant (Client: Hunt Oil Company)", "Dallas, TX",
     [
-        "Developed interactive Power BI dashboards visualizing seven years of oil-and-gas differentials to support planning, forecasting, and sector analysis.",
-        "Built a real-time data connection between SAP HANA and SQL Server using stored procedures and data virtualization, enhancing refresh speed and enabling timely reporting.",
-        "Partnered with developers to migrate the AFENAV application to Salesforce APEX, improving data integrity and eliminating external vendor dependency.",
+        "Modeled seven years of oil-and-gas price differentials in Power BI for a major energy client, supporting sector planning, forecasting, and performance analysis.",
+        "Engineered a real-time SAP HANA-to-SQL Server data pipeline (stored procedures, data virtualization) that accelerated refresh speed and enabled timely reporting.",
+        "Led migration of the AFENAV application to Salesforce APEX, improving data integrity and eliminating external vendor dependency.",
     ]):
     story.append(flow)
 
@@ -143,9 +143,9 @@ for flow in job(
     "InfoServe BI LLC", "Jun 2023 - Aug 2024",
     "Business Intelligence Reporting Analyst (Client: Holman Enterprises)", "Dallas, TX",
     [
-        "Managed an SAP BusinessObjects environment supporting 790+ users and 70+ data universes, ensuring report availability and timely issue resolution.",
-        "Automated BI reporting by connecting SAP BusinessObjects 4.2 with Oracle databases and scheduling tools, reducing manual effort and improving efficiency.",
-        "Developed advanced SQL queries and ETL workflows to consolidate data sources and enhance consistency across reporting environments.",
+        "Administered an SAP BusinessObjects environment for 790+ users and 70+ data universes, sustaining high availability and rapid issue resolution.",
+        "Automated recurring reporting (SAP BusinessObjects 4.2 to Oracle, scheduled refresh), cutting manual effort and improving turnaround.",
+        "Wrote advanced SQL and ETL workflows that consolidated disparate sources into consistent, decision-ready reporting.",
     ]):
     story.append(flow)
 
@@ -162,9 +162,9 @@ story.append(bullets([
 # KEY ACHIEVEMENTS
 story.append(hr_section("Key Achievements"))
 story.append(bullets([
-    "<b>Portfolio Governance:</b> Established standardized budget reporting and dashboard frameworks across a $71M, 60+ project portfolio, improving transparency and executive decision support.",
-    "<b>Cost Optimization:</b> Developed analytical models that identified ~$500K in annualized infrastructure cost savings through consolidation analysis.",
-    "<b>Revenue Enhancement:</b> Identified revenue patterns and operational gaps influencing $1.35M+ monthly volume through variance and trend analysis.",
+    "<b>Capital Allocation:</b> Built the budgeting, forecasting, and dashboard framework governing a $71M, 60+ project portfolio, directly supporting executive funding decisions.",
+    "<b>Valuation Impact:</b> Quantified ~$500K in annualized savings via an NPV / cost-benefit model that drove an infrastructure consolidation decision.",
+    "<b>Revenue Analytics:</b> Pinpointed leakage and growth drivers across $1.35M+ in monthly fintech volume through variance and trend modeling.",
 ]))
 
 # EDUCATION
