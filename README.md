@@ -1,5 +1,9 @@
 # azim — computer use with Claude
 
+[![Python 3.11+](https://img.shields.io/badge/python-3.11%2B-blue)](https://www.python.org/)
+[![License: MIT](https://img.shields.io/badge/license-MIT-green)](LICENSE)
+[![Model](https://img.shields.io/badge/model-Claude%20Opus%205-orange)](https://platform.claude.com/docs/en/agents-and-tools/tool-use/computer-use-tool)
+
 Give Claude a screen. This runs a virtual X11 desktop and hands Claude Opus 5 the
 [computer use tool](https://platform.claude.com/docs/en/agents-and-tools/tool-use/computer-use-tool),
 so it can take screenshots, move the mouse, click, type, scroll, and zoom its way
