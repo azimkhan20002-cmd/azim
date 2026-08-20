@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Smarter Than Yesterday — Making Azim as smart as humanly possible</title>
+<meta name="description" content="An interactive course in becoming measurably smarter in all aspects of life — learning science, money, energy, people, AI and life systems. With British-accented voice lessons, quizzes and spaced-repetition flashcards.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧠</text></svg>">
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+<div class="aurora"></div>
+
+<nav class="top">
+  <div class="wrap">
+    <div class="brand" onclick="location.hash='#/'">
+      <div class="logo">🧠</div>
+      <div>
+        Smarter Than Yesterday
+        <small>Making Azim as smart as humanly possible</small>
+      </div>
+    </div>
+    <div class="nav-links">
+      <a href="#/">Home</a>
+      <a href="#/domains">Course</a>
+      <a href="#/flashcards">Flashcards</a>
+      <a href="#/roadmap">Roadmap</a>
+      <a href="#/science">Science</a>
+      <a href="#/progress">Progress</a>
+      <a href="#/guide">Guide</a>
+    </div>
+    <span class="nav-stat" id="nav-stat" title="Streak · Level · XP">🔥 0 · Novice · 0 XP</span>
+  </div>
+</nav>
+
+<main>
+  <div class="wrap" id="view"><!-- rendered by app.js --></div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <p><b>Smarter Than Yesterday</b> — a self-contained interactive course. Your progress never leaves this browser.</p>
+    <p style="margin-top:6px">🇬🇧 All voice lessons use British English voices only · 🔇 Nothing ever auto-plays · 🧬 Built on retrieval practice, spaced repetition and honest numbers</p>
+  </div>
+</footer>
+
+<div id="toast" role="status" aria-live="polite"></div>
+
+<script src="js/data.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>

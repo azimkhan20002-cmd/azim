@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>29-Week Roadmap — Smarter Than Yesterday</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🗺️</text></svg>">
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+<div class="aurora"></div>
+<main>
+  <div class="wrap" id="view">
+    <section class="hero">
+      <span class="eyebrow">Making Azim as smart as humanly possible</span>
+      <h1>The 29-Week Roadmap</h1>
+      <p class="lead">Print this. Pin it somewhere you'll see it. One lesson a week, five minutes of flashcards a day — that is the entire job.</p>
+      <div class="btn-row" style="justify-content:center">
+        <a class="btn primary" href="index.html">← Open the course</a>
+        <button class="btn" onclick="window.print()">🖨 Print this roadmap</button>
+      </div>
+    </section>
+
+    <div class="card mb">
+      <h3 style="margin-bottom:12px">The weekly rhythm (every week, all 29)</h3>
+      <table class="clean">
+        <tr><th>When</th><th>What</th><th>Time</th></tr>
+        <tr><td>Every day</td><td>Clear due flashcards (the app schedules them at 1→3→7→16→35 days)</td><td>5 min</td></tr>
+        <tr><td>One session</td><td>This week's lesson: read key ideas <i>or</i> play the British voice lesson → take the quiz</td><td>15 min</td></tr>
+        <tr><td>Sometime this week</td><td>Do the lesson's real-world action and mark it done</td><td>10–30 min</td></tr>
+        <tr><td>Sunday</td><td>Check Progress screen · add one custom flashcard from your own life</td><td>5 min</td></tr>
+      </table>
+    </div>
+
+    <div id="roadmap-body"></div>
+
+    <div class="callout mt"><b>Falling behind?</b> Never miss twice. A missed week is an accident; two is a new habit. Just restart at the next lesson — the streak forgives, the compounding doesn't care about a gap.</div>
+  </div>
+</main>
+<footer><div class="wrap"><p>Smarter Than Yesterday · progress lives in your browser · voice lessons: British English only, never auto-played</p></div></footer>
+<script src="js/data.js"></script>
+<script>
+  const body = document.getElementById("roadmap-body");
+  let wk = 0;
+  body.innerHTML = COURSE.domains.map(d => `
+    <div class="section-head"><h2>${d.icon} ${d.name}</h2><p>${d.tagline}</p></div>
+    <div class="card mb">
+      ${d.lessons.map(l => { wk++; return `
+        <div class="phase">
+          <div class="when">Week ${wk} · ~${l.minutes} min</div>
+          <h3>${l.title}</h3>
+          <ul>
+            <li>${l.hook}</li>
+            <li><b>Action:</b> ${l.action}</li>
+          </ul>
+        </div>`; }).join("")}
+    </div>`).join("");
+</script>
+</body>
+</html>
