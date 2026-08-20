@@ -4,6 +4,12 @@
 [![License: MIT](https://img.shields.io/badge/license-MIT-green)](LICENSE)
 [![Model](https://img.shields.io/badge/model-Claude%20Opus%205-orange)](https://platform.claude.com/docs/en/agents-and-tools/tool-use/computer-use-tool)
 
+> **🧠 New in this repo: [Smarter Than Yesterday](#-smarter-than-yesterday--the-course)** —
+> an interactive course, labelled *"Making Azim as smart as humanly possible in all aspects of
+> life"*. 6 domains · 29 lessons · 87 quiz questions · spaced-repetition flashcards ·
+> British-accent voice lessons · progress tracking. Run it with
+> `python3 course_server.py` and open <http://localhost:8000>.
+
 Give Claude a screen. This runs a virtual X11 desktop and hands Claude Opus 5 the
 [computer use tool](https://platform.claude.com/docs/en/agents-and-tools/tool-use/computer-use-tool),
 so it can take screenshots, move the mouse, click, type, scroll, and zoom its way
@@ -123,3 +129,87 @@ anything on screen is something Claude can click.
 Some environments restrict outbound network access, in which case Chromium will
 show `ERR_TUNNEL_CONNECTION_FAILED` for external sites while local pages
 (`file://`, localhost) work fine. That's the network policy, not the agent.
+
+---
+
+# 🧠 Smarter Than Yesterday — the course
+
+*"Making Azim as smart as humanly possible — in all aspects of life."*
+
+An interactive, self-contained course that distils what the world's smartest
+operators know — learning science, memory, thinking tools, money, energy,
+people skills, decision-making, and AI & its future — into 29 short lessons
+that genuinely change behaviour, not just fill your head.
+
+| Piece | What it does |
+| --- | --- |
+| `index.html` | The course app. Single-page, zero build step, zero external requests. |
+| `js/data.js` | The curriculum: 6 domains, 29 lessons, 87 quiz questions, voice scripts, real-world actions. |
+| `js/app.js` | The engine: router, British-accent voice lessons, quizzes with explanations, spaced-repetition flashcards (1→3→7→16→35 days), XP / streaks / badges, CSV export. |
+| `css/styles.css` | The design system: dark aurora glassmorphism, hand-written, no CDNs. |
+| `roadmap.html` | Printable 29-week roadmap — one lesson a week. |
+| `course_server.py` | One-command local server (Python stdlib only). |
+
+## Run it
+
+```bash
+python3 course_server.py          # then open http://localhost:8000
+```
+
+Any static server works (`npx serve`, nginx, …), or host the repo root on
+GitHub Pages — it's plain static files. No build, no dependencies, no network.
+
+## Your guide — how to actually use it
+
+1. **Start with lesson 1** (`Mind & Learning → How Learning Actually Works`) —
+   it teaches the method the whole course is built on.
+2. **Read or listen.** Every lesson has a full voice version using **British
+   English (en-GB) voices only** — no other accent is ever offered, and
+   **nothing ever auto-plays**; you press ▶ Play. If your device has no British
+   voice installed, the app tells you how to add one instead of swapping accents.
+3. **Take the quiz.** Getting questions wrong is the mechanism, not the failure.
+   Every question shows an explanation and becomes a flashcard.
+4. **Do the "Do it today" action.** Each lesson ends with one concrete
+   real-world action. This is where the course becomes real.
+5. **Come back daily for 5 minutes of flashcards.** The scheduler resurfaces
+   each card just as you'd forget it — that's what makes learning permanent.
+6. **Follow the roadmap.** One lesson per week for 29 weeks (`#/roadmap` or the
+   printable `roadmap.html`). Faster is allowed; the daily review is sacred.
+7. **Watch Progress.** XP, streaks, domain bars, badges — and export everything
+   to CSV. All data lives only in your browser's localStorage: private by design.
+
+## How much smarter will it make you? The honest numbers
+
+No course can promise IQ points — anyone who does is selling something. What the
+evidence *does* support, and what this course trains:
+
+| Capacity | Evidence | Realistic gain |
+| --- | --- | --- |
+| Retention of what you learn | Retrieval practice + spaced repetition roughly **double** long-term retention vs rereading (Dunlosky et al. 2013; Roediger & Karpicke 2006) | ~2× of what you study actually sticks |
+| Skill acquisition | Deliberate practice is the strongest known predictor of expertise (Ericsson) | A repeatable method for any skill, forever |
+| Decision quality | Pre-mortems, base rates and expected-value thinking measurably reduce judgement errors | A few avoided disasters per decade is life-changing |
+| Financial outcomes | Starting investing at 25 vs 35 can ~2× end wealth at identical contributions | Potentially the best £-per-hour you'll ever learn |
+| Focus & output | Deep work + attention-residue research | ~2× output on your most important work |
+| AI leverage | Large measured productivity gains for professionals who use AI well | A durable top-decile career edge |
+| Energy & wellbeing | Sleep consistency, exercise and stress-recovery have among the largest effect sizes in health psychology | More good hours per day — the multiplier on everything |
+
+**The compounding claim you can bank:** 1% more effective per week for 29 weeks
+isn't 29% — compounded it's ~33% and accelerating, because every mental model
+makes the next one easier to learn. The truthful promise isn't "genius in 25
+weeks". It's a permanently better operating system, installed one upgrade at a
+time — measured honestly by your quiz scores, flashcard retention and streak,
+all visible on the Progress screen.
+
+## The 29-week roadmap at a glance
+
+| Weeks | Domain |
+| --- | --- |
+| 1–6 | 🧠 Mind & Learning — how learning, memory, focus and thinking actually work |
+| 7–10 | 💷 Money & Work — compounding, career capital, negotiation, self-sabotage |
+| 11–14 | ⚡ Body & Energy — sleep, exercise, nutrition, stress recovery |
+| 15–18 | 🗣️ People & Communication — speaking, listening, hard conversations, influence |
+| 19–24 | 🤖 AI & the Future — how AI works, top-1% usage, career strategy, safety, the next decade |
+| 25–29 | 🧭 Life Operating System — decisions, habits, systems, relationships, meaning |
+
+Rhythm: 5 min flashcards daily · one 20-min lesson weekly · one real-world
+action weekly · one rule above all: **never miss twice**.

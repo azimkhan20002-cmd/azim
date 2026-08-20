@@ -76,7 +76,7 @@ const BADGES = [
   { id: "streak-7", icon: "☄️", name: "On Fire", desc: "Reach a 7-day streak" },
   { id: "domain-done", icon: "🏰", name: "Domain Conquered", desc: "Complete every lesson in a domain" },
   { id: "halfway", icon: "⛰️", name: "Halfway Up", desc: "Complete 12 lessons" },
-  { id: "graduate", icon: "🎓", name: "Smarter Than Yesterday", desc: "Complete all 24 lessons" },
+  { id: "graduate", icon: "🎓", name: "Smarter Than Yesterday", desc: "Complete every lesson in the course" },
   { id: "reviewer-10", icon: "🃏", name: "Memory Builder", desc: "Do 10 flashcard reviews" },
   { id: "card-maker", icon: "✍️", name: "Note Taker", desc: "Create your own flashcard" }
 ];
@@ -142,15 +142,26 @@ const Voice = {
   init() {
     if (!this.supported) return;
     this.load();
-    speechSynthesis.onvoiceschanged = () => this.load();
+    speechSynthesis.onvoiceschanged = () => {
+      this.load();
+      // If a lesson page is open, refresh the selector so newly loaded voices appear.
+      const sel = document.getElementById("voice-select");
+      if (sel && this.voices.length && sel.options.length && sel.options[0].value === "") router();
+    };
   },
 
   speak(text, voiceIndex, statusEl) {
     if (!this.supported) return;
     this.stop(true);
+    const voice = this.voices[voiceIndex] || this.voices[0];
+    if (!voice) {
+      // Strict rule: never sneak in a non-British accent.
+      statusEl.textContent = "No British (en-GB) voice is installed on this device, so nothing will play. On most systems: Settings → Speech → Add voice → English (United Kingdom).";
+      return;
+    }
     const u = new SpeechSynthesisUtterance(text);
     u.lang = "en-GB";
-    if (this.voices[voiceIndex]) u.voice = this.voices[voiceIndex];
+    u.voice = voice;
     u.rate = 0.96;
     u.pitch = 1.0;
     u.onstart = () => { statusEl.textContent = "Playing… listen actively — pause and summarise in your own head at the end."; statusEl.classList.add("speaking"); };
@@ -187,7 +198,7 @@ function voiceBoxHTML(lesson) {
   }
   const options = Voice.voices.length
     ? Voice.voices.map((v, i) => `<option value="${i}">${esc(v.name)} (${esc(v.lang)})</option>`).join("")
-    : `<option value="">No British voice found — browser default will try en-GB</option>`;
+    : `<option value="">No British voice installed — play will explain how to add one</option>`;
   return `
   <div class="card voice-box">
     <h4>🔊 Voice lesson — British accent only</h4>
@@ -314,7 +325,7 @@ function domainCardHTML(d) {
 
 function renderDomains(view) {
   view.innerHTML = `
-    <div class="section-head"><h2>Course domains</h2><p>Six pillars. Twenty-four lessons. One sharper Azim.</p></div>
+    <div class="section-head"><h2>Course domains</h2><p>Six pillars. ${COURSE.allLessons().length} lessons. One sharper Azim.</p></div>
     <div class="grid two" id="domains-grid"></div>`;
   const grid = $("#domains-grid");
   grid.innerHTML = COURSE.domains.map(d => domainCardHTML(d)).join("");
@@ -592,24 +603,21 @@ function renderFlashcards(view) {
 }
 
 /* ---------------- roadmap ---------------- */
+const DOMAIN_WEEK_STARTS = [];
+COURSE.domains.reduce((acc, d) => { DOMAIN_WEEK_STARTS.push(acc); return acc + d.lessons.length; }, 1);
+function domainWeekStart(di) { return DOMAIN_WEEK_STARTS[di]; }
+
 function renderRoadmap(view) {
-  const weeks = [];
-  COURSE.domains.forEach((d, di) => {
-    d.lessons.forEach((l, li) => {
-      const wk = di * 4 + li + 1; // 24 lessons -> 24 weeks max
-      weeks.push({ wk, d, l });
-    });
-  });
   view.innerHTML = `
-    <div class="section-head"><h2>🗺️ The 24-week roadmap</h2><p>One lesson per week is the sustainable pace — 20 minutes of learning plus one real-world action. Faster is allowed; slower is fine. Consistency is the whole game. <a href="roadmap.html" style="color:var(--brand)" target="_blank" rel="noopener">Open printable version ↗</a></p></div>
+    <div class="section-head"><h2>🗺️ The ${COURSE.allLessons().length}-week roadmap</h2><p>One lesson per week is the sustainable pace — 20 minutes of learning plus one real-world action. Faster is allowed; slower is fine. Consistency is the whole game. <a href="roadmap.html" style="color:var(--brand)" target="_blank" rel="noopener">Open printable version ↗</a></p></div>
     <div class="grid two">
       ${COURSE.domains.map((d, di) => `
         <div class="card">
           <h3 style="margin-bottom:4px">${d.icon} ${esc(d.name)}</h3>
-          <p class="text-dim" style="font-size:0.84rem;margin-bottom:14px">Weeks ${di * 4 + 1}–${di * 4 + d.lessons.length}</p>
+          <p class="text-dim" style="font-size:0.84rem;margin-bottom:14px">Weeks ${domainWeekStart(di)}–${domainWeekStart(di) + d.lessons.length - 1}</p>
           ${d.lessons.map((l, li) => `
             <div class="lesson-row ${state.completed[l.id] ? "done" : ""}" data-id="${l.id}" style="margin-bottom:8px">
-              <div class="num" style="font-size:0.7rem">W${di * 4 + li + 1}</div>
+              <div class="num" style="font-size:0.7rem">W${domainWeekStart(di) + li}</div>
               <div class="info"><b style="font-size:0.88rem">${esc(l.title)}</b></div>
               <div class="state" style="font-size:0.9rem">${state.completed[l.id] ? "✅" : ""}</div>
             </div>`).join("")}
@@ -654,7 +662,7 @@ function renderScience(view) {
       </ul>
     </div>
 
-    <div class="callout blue mt"><b>The compounding claim you can bank:</b> if this course makes you 1% more effective per week for 24 weeks, that's not 24% — compounded, it's roughly 27% and accelerating, because every mental model makes the next one easier to learn. The truthful promise is not "genius in 24 weeks." It's: a permanently better operating system, installed one upgrade at a time.</div>`;
+    <div class="callout blue mt"><b>The compounding claim you can bank:</b> if this course makes you 1% more effective per week for the full roadmap, that's not ~29% — compounded, it's roughly 33% and accelerating, because every mental model makes the next one easier to learn. The truthful promise is not "genius in 29 weeks." It's: a permanently better operating system, installed one upgrade at a time.</div>`;
 }
 
 /* ---------------- progress ---------------- */
@@ -752,7 +760,7 @@ function renderGuide(view) {
       </div>
       <div class="card">
         <h3 style="margin-bottom:10px">📅 The rhythm that works</h3>
-        <p class="text-dim" style="font-size:0.92rem">Daily: 5 minutes of flashcards. Weekly: one lesson + quiz + its real-world action. That's the <a href="#/roadmap" style="color:var(--brand)">24-week roadmap</a>. Faster is allowed, but never sacrifice the daily review — spacing is what makes memory permanent.</p>
+        <p class="text-dim" style="font-size:0.92rem">Daily: 5 minutes of flashcards. Weekly: one lesson + quiz + its real-world action. That's the <a href="#/roadmap" style="color:var(--brand)">full roadmap</a>. Faster is allowed, but never sacrifice the daily review — spacing is what makes memory permanent.</p>
       </div>
       <div class="card">
         <h3 style="margin-bottom:10px">📊 Your data</h3>
