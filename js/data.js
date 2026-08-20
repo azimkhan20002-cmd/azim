@@ -1,7 +1,7 @@
 /* ============================================================
    SMARTER THAN YESTERDAY — curriculum data
    "Making Azim as smart as humanly possible — in all aspects of life."
-   Six domains · 24 lessons · quizzes, flashcards, voice scripts.
+   Six domains · 29 lessons · quizzes, flashcards, voice scripts.
    ============================================================ */
 
 const COURSE = {

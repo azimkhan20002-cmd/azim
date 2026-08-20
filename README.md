@@ -195,7 +195,7 @@ evidence *does* support, and what this course trains:
 
 **The compounding claim you can bank:** 1% more effective per week for 29 weeks
 isn't 29% — compounded it's ~33% and accelerating, because every mental model
-makes the next one easier to learn. The truthful promise isn't "genius in 25
+makes the next one easier to learn. The truthful promise isn't "genius in 29
 weeks". It's a permanently better operating system, installed one upgrade at a
 time — measured honestly by your quiz scores, flashcard retention and streak,
 all visible on the Progress screen.

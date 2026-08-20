@@ -152,7 +152,7 @@ const Voice = {
 
   speak(text, voiceIndex, statusEl) {
     if (!this.supported) return;
-    this.stop(true);
+    this.stop();
     const voice = this.voices[voiceIndex] || this.voices[0];
     if (!voice) {
       // Strict rule: never sneak in a non-British accent.
@@ -184,7 +184,7 @@ const Voice = {
     }
   },
 
-  stop(silent) {
+  stop() {
     if (!this.supported) return;
     speechSynthesis.cancel();
     this.current = null;
@@ -258,7 +258,7 @@ const routes = {
 };
 
 function router() {
-  Voice.stop(true);
+  Voice.stop();
   const hash = location.hash.replace(/^#\/?/, "");
   const [name, arg] = hash.split("/");
   const view = $("#view");
@@ -536,7 +536,7 @@ function renderFlashcards(view) {
     if (i >= total) {
       touchStreak();
       if (total > 0) { addXP(10, "review session complete"); }
-      return view.innerHTML = `
+      view.innerHTML = `
         <div class="card quiz-result">
           <div class="big">🎉</div>
           <h2 style="margin-bottom:8px">Deck clear.</h2>
@@ -546,6 +546,8 @@ function renderFlashcards(view) {
             <button class="btn ghost" id="add-card-btn2">✍️ Add a custom card</button>
           </div>
         </div>`;
+      $("#add-card-btn2").addEventListener("click", () => renderFlashcards(view));
+      return;
     }
     const card = due[i];
     view.innerHTML = `
