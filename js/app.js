@@ -244,18 +244,18 @@ function dueCards() {
 }
 
 /* ---------------- router ---------------- */
-const routes = {
-  "": renderHome,
-  "domains": renderDomains,
-  "domain": renderDomain,
-  "lesson": renderLesson,
-  "quiz": renderQuiz,
-  "flashcards": renderFlashcards,
-  "roadmap": renderRoadmap,
-  "science": renderScience,
-  "progress": renderProgress,
-  "guide": renderGuide
-};
+const routes = new Map([
+  ["", renderHome],
+  ["domains", renderDomains],
+  ["domain", renderDomain],
+  ["lesson", renderLesson],
+  ["quiz", renderQuiz],
+  ["flashcards", renderFlashcards],
+  ["roadmap", renderRoadmap],
+  ["science", renderScience],
+  ["progress", renderProgress],
+  ["guide", renderGuide]
+]);
 
 function router() {
   Voice.stop();
@@ -263,7 +263,7 @@ function router() {
   const [name, arg] = hash.split("/");
   const view = $("#view");
   window.scrollTo(0, 0);
-  const render = Object.prototype.hasOwnProperty.call(routes, name) ? routes[name] : renderHome;
+  const render = routes.get(name) || renderHome;
   render(view, arg);
   document.querySelectorAll(".nav-links a").forEach(a => {
     a.classList.toggle("active", a.getAttribute("href") === `#/${name || ""}` || (name === "" && a.getAttribute("href") === "#/"));
