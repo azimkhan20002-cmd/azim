@@ -263,7 +263,8 @@ function router() {
   const [name, arg] = hash.split("/");
   const view = $("#view");
   window.scrollTo(0, 0);
-  (routes[name] || renderHome)(view, arg);
+  const render = Object.prototype.hasOwnProperty.call(routes, name) ? routes[name] : renderHome;
+  render(view, arg);
   document.querySelectorAll(".nav-links a").forEach(a => {
     a.classList.toggle("active", a.getAttribute("href") === `#/${name || ""}` || (name === "" && a.getAttribute("href") === "#/"));
   });
