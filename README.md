@@ -10,6 +10,9 @@
 > British-accent voice lessons · progress tracking. Run it with
 > `python3 course_server.py` and open <http://localhost:8000>.
 
+> **🖱️ Also new: [PodMouse](airpods-mouse/)**: turn your AirPods case into a mouse. Turn it
+> to aim, tap it to click. Mac menu bar app, one-line install.
+
 Give Claude a screen. This runs a virtual X11 desktop and hands Claude Opus 5 the
 [computer use tool](https://platform.claude.com/docs/en/agents-and-tools/tool-use/computer-use-tool),
 so it can take screenshots, move the mouse, click, type, scroll, and zoom its way
