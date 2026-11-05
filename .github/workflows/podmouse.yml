@@ -1,0 +1,44 @@
+name: PodMouse
+
+# Builds the AirPods-case mouse on a real Mac and uploads PodMouse.app,
+# so it can be downloaded without installing Xcode.
+on:
+  pull_request:
+    paths:
+      - "airpods-mouse/**"
+      - ".github/workflows/podmouse.yml"
+  push:
+    branches: [main]
+    paths:
+      - "airpods-mouse/**"
+      - ".github/workflows/podmouse.yml"
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: macos-15
+    defaults:
+      run:
+        working-directory: airpods-mouse
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Unit tests (calibration, filtering, gestures)
+        run: swift test
+
+      - name: Build PodMouse.app (Apple Silicon + Intel)
+        run: UNIVERSAL=1 ./build-app.sh
+
+      - name: Check the bundle
+        run: |
+          lipo -info dist/PodMouse.app/Contents/MacOS/PodMouse
+          plutil -lint dist/PodMouse.app/Contents/Info.plist
+          codesign --verify --verbose dist/PodMouse.app
+
+      - name: Zip
+        run: ditto -c -k --keepParent dist/PodMouse.app dist/PodMouse.zip
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: PodMouse
+          path: airpods-mouse/dist/PodMouse.zip
